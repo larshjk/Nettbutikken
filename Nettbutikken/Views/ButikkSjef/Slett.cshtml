@@ -1,0 +1,23 @@
+﻿@model Nettbutikken.Models.Vare
+
+@{
+    ViewBag.Title = "Slett";
+}
+
+<h2>Slett</h2>
+
+<p>
+    Er du sikker på at du vil slette varen:
+    <strong>@Model.Varenavn</strong>?
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="Delete" />
+    </p>
+    <p>
+        @Html.ActionLink("Tilbake til listen", "Index")
+    </p>
+
+}

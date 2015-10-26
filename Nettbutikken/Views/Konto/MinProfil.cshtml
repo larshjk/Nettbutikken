@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "MinProfil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<Nettbutikken.Models.Kvitto>
+<table class="table table-striped">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>
+                Ordre Id
+            </th>
+
+            <th>
+                Vare
+            </th>
+            <th>
+                Antall
+            </th>
+            <th>
+                Ordredato
+            </th>
+            <th>
+                Pris
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrdreId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Varenavn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Antall)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrdreDato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td></td>
+        </tr>
+    }
+
+</table>
+

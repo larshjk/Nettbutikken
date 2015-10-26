@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Nettbutikken.Models.Kategori>
+@{
+    ViewBag.Title = "Butikk";
+}
+<p>
+    Velg mellom @Model.Count() kategorier:
+</p>
+<ul>
+    @foreach (var Kategori in Model)
+    {
+        <li>@Html.ActionLink(Kategori.Navn, "Browse", new { Kategori = Kategori.Navn })</li>
+    }
+</ul>
+

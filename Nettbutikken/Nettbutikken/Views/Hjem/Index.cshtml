@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model List<Nettbutikken.Models.Vare>
+    <table class="table table-striped" id="varer">
+ 
+        @foreach (var vare in Model)
+        {
+
+
+            <tr>
+              <td>
+                    <a href="@Url.Action("Details", "Butikk",
+                    new { id = vare.VareId })">
+
+                        <img alt="@vare.Varenavn" src="@vare.Varebilde" height="100px" width="100px" />
+                        <span>@vare.Varenavn</span>
+                    </a>
+                </td>
+            </tr>
+
+
+        }
+
+    </table>
+  

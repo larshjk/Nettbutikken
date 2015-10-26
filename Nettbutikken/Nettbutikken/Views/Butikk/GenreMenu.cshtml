@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Nettbutikken.Models.Kategori>
+
+<ul id="categories">
+    @foreach (var kategori in Model)
+    {
+        <li>
+            @Html.ActionLink(kategori.Navn,
+                "Browse", "Butikk",
+                new { Kategori = kategori.Navn }, null)
+        </li>
+    }
+</ul>
+

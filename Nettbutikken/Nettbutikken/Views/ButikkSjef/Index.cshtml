@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Nettbutikken.Models.Vare>
+
+@helper Truncate(string input, int length)
+{
+if (input.Length <= length)
+{
+        @input
+}
+else
+{
+        @input.Substring(0, length)<text>...</text>
+}
+}
+@{
+    ViewBag.Title = "Index";
+}
+<p>
+    @Html.ActionLink("Legg til ny vare", "Opprett")
+    @Html.ActionLink("Legg til ny Kategori", "leggTilKat")
+</p>
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Kategori
+            </th>
+
+            <th>
+                Vare
+            </th>
+            <th>
+                Pris
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var vare in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => vare.Kategori.Navn)
+                </td>
+                <td>
+                    @Truncate(vare.Varenavn, 25)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => vare.Pris)
+                </td>
+                <td>
+                    @Html.ActionLink("Endre", "Endre", new { id = vare.VareId }, new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("Detaljer", "Detaljer", new { id = vare.VareId }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Slett", "Slett", new { id = vare.VareId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>

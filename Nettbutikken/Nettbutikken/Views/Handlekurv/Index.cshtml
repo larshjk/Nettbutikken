@@ -1,0 +1,107 @@
+﻿@model Nettbutikken.Models.HandlekurvViewModel
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/Scripts/jquery-1.4.4.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $(".SlettLink").click(function () 
+        {
+         
+            // Get the id from the link
+            var vareSlett = $(this).attr("data-id");
+
+            if (vareSlett != '') {
+
+                // Perform the ajax post
+                $.post("/Handlekurv/RemoveFromCart", { "id": vareSlett },
+                    function (data) {
+                        // Successful requests get here
+                        // Update the page elements
+                        if (data.AntallVarer == 0) {
+                            $('#row-' + data.SlettId).fadeOut('slow');
+                        } else {
+                            $('#item-count-' + data.SlettId).text(data.AntallVarer);
+                        }
+
+                        $('#cart-total').text(data.TotalSum);
+                        $('#update-message').text(data.Melding);
+                        $('#cart-status').text('Vogn (' + data.AntallVarer + ')');
+                    });
+            }
+        });
+
+    });
+
+
+    function handleUpdate() {
+        // Load and deserialize the returned JSON data
+        var json = context.get_data();
+        var data = Sys.Serialization.JavaScriptSerializer.deserialize(json);
+
+        // Update the page elements
+        if (data.AntallVarer == 0) {
+            $('#row-' + data.SlettId).fadeOut('slow');
+        } else {
+            $('#item-count-' + data.SlettId).text(data.AntallVarer);
+        }
+
+        $('#cart-total').text(data.TotalSum);
+        $('#update-message').text(data.Melding);
+        $('#cart-status').text('Vogn (' + data.AntallVogner + ')');
+    }
+</script>
+<h3>
+    Dette ligger i handlekurven:
+</h3>
+<p class="button">
+    @Html.ActionLink("Gå til betaling >>", "Betaling", "Bestill")
+</p>
+<div id="update-message">
+</div>
+<table class="table table-striped">
+    <tr>
+        
+        <th>
+         Varenavn
+        </th>
+        <th>
+            Pris
+        </th>
+        <th>
+            Antall
+        </th>
+        <th>
+
+        </th>
+    </tr>
+    @foreach (var item in Model.VognVarer)
+    {
+        <tr id="row-@item.HandleId">
+            <td>
+                @Html.ActionLink(item.Vare.Varenavn, "Details", "Butikk", new { id = item.VareId }, null)
+            </td>
+            <td>
+                @item.Vare.Pris
+            </td>
+            <td id="item-count-@item.HandleId">
+                @item.Count
+            </td>
+            <td>
+                <a href="#" class="SlettLink" data-id="@item.HandleId" onclick="handleUpdate();">Fjern fra vogn</a>
+            </td>
+        </tr>
+    }
+    <tr>
+        <td>
+            Total
+        </td>
+        <td></td>
+        <td></td>
+        <td id="cart-total">
+            @Model.TotalSum
+        </td>
+    </tr>
+</table>

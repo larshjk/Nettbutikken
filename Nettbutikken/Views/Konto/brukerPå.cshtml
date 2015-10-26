@@ -1,0 +1,8 @@
+﻿@if (ViewData["brukerpå"]!= null)
+{
+    <p class="navbar-brand navbar-right">Du er logget inn som: @ViewData["brukerpå"]</p>
+}
+else
+{
+    <p  class="navbar-text navbar-right">Ikke logget inn</p>
+}

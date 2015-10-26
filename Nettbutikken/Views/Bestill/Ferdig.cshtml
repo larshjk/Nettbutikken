@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Ferdig";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model int
+<h2>Bestilling fullført</h2>
+<p>Takk for at du bestilte, ditt ordrenummer er: @Model </p>
+<p>
+    Vil du handle mer?
+    @Html.ActionLink("Butikk", "Index", "Hjem")
+</p>
+
+

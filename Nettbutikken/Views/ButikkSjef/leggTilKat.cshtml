@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "leggTilKat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Nettbutikken.Models.Kategori
+<h2>Legg til kategori</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Legg til kategorier</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Navn)
+        </div>
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Navn)
+            @Html.ValidationMessageFor(model => model.Navn)
+        </div>
+        <p>
+            <input type="submit" value="Opprett" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Tilbake", "Index")
+</div>

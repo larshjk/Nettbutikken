@@ -1,0 +1,35 @@
+﻿@model Nettbutikken.Models.Vare
+
+@{
+    ViewBag.Title = "Detaljer";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Album</legend>
+
+    <div class="display-label">Genre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Kategori.Navn)
+    </div>
+
+    <div class="display-label">Title</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Varenavn)
+    </div>
+
+    <div class="display-label">Price</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Pris)
+    </div>
+
+    <div class="display-label">AlbumArtUrl</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Varebilde)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VareId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

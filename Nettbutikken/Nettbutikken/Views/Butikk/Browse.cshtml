@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Kategorier";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Nettbutikken.Models.Kategori
+
+<div class="genre">
+    <h3><em>@Model.Navn</em> Varer</h3>
+    <ul id="album-list">
+        @foreach (var vare in Model.Vare)
+        {
+            <li>
+                <a href="@Url.Action("Details", new { id = vare.VareId })">
+                    <img alt="@vare.Varenavn" src="@vare.Varebilde" height="100px" width="100px" />
+                    <span>@vare.Varenavn</span>
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+
+
