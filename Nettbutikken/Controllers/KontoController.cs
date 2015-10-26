@@ -60,7 +60,7 @@ namespace Nettbutikken.Controllers
                  var brukernavn = Session["Brukernavn"];
                  string b = Convert.ToString(brukernavn);
                     //Skriver ut alle bestillinger for brukeren som er innlogget. Bruker brukernavnet fra session ved innlogging
-                 var bestillinger = (from odetaljer in db.OrdreDetaljers
+                 var bestillinger = (from odetaljer in db.OrdreDetaljer
                                 from ord in db.Ordrer
                                 from v in db.Varer
                                 where odetaljer.OrdreId == ord.OrdreId && odetaljer.VareId == v.VareId && odetaljer.Ordre.Brukernavn == b
